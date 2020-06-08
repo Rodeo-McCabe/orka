@@ -31,7 +31,6 @@ with GL.Objects.Framebuffers;
 with GL.Objects.Queries;
 with GL.Objects.Shaders;
 with GL.Objects.Textures;
-with GL.Objects.Vertex_Arrays;
 with GL.Pixels.Queries;
 with GL.Rasterization;
 with GL.Toggles;
@@ -76,9 +75,6 @@ private package GL.API is
 
    package Get_Boolean is new Loader.Getter_With_2_Params
      ("glGetBooleanv", Enums.Getter.Parameter, Low_Level.Bool);
-
-   package Get_Double is new Loader.Getter_With_2_Params
-     ("glGetDoublev", Enums.Getter.Parameter, Double);
 
    package Get_Double_Vec2_I is new Loader.Getter_With_3_Params
      ("glGetDoublei_v", Enums.Getter.Parameter, UInt, Doubles.Vector2);
@@ -149,9 +145,6 @@ private package GL.API is
 
    package Get_Stencil_Action is new Loader.Getter_With_2_Params
      ("glGetIntegerv", Enums.Getter.Parameter, Buffers.Stencil_Action);
-
-   package Get_Read_Buffer_Selector is new Loader.Getter_With_2_Params
-     ("glGetIntegerv", Enums.Getter.Parameter, Buffers.Color_Buffer_Selector);
 
    package Get_String is new Loader.Function_With_1_Param
      ("glGetString", Enums.Getter.String_Parameter, C.Strings.chars_ptr);
@@ -539,37 +532,6 @@ private package GL.API is
    package Bind_Vertex_Array is new Loader.Procedure_With_1_Param
      ("glBindVertexArray", UInt);
 
-   package Vertex_Array_Attrib_Format is new Loader.Procedure_With_6_Params
-     ("glVertexArrayAttribFormat", UInt, Attribute, Component_Count,
-      Numeric_Type, Low_Level.Bool, UInt);
-
-   package Vertex_Array_AttribI_Format is new Loader.Procedure_With_5_Params
-     ("glVertexArrayAttribIFormat", UInt, Attribute, Component_Count,
-      Numeric_Type, UInt);
-
-   package Vertex_Array_AttribL_Format is new Loader.Procedure_With_5_Params
-     ("glVertexArrayAttribLFormat", UInt, Attribute, Component_Count,
-      Numeric_Type, UInt);
-
-   package Vertex_Array_Attrib_Binding is new Loader.Procedure_With_3_Params
-     ("glVertexArrayAttribBinding", UInt, Attribute, Objects.Vertex_Arrays.Binding);
-
-   package Vertex_Array_Binding_Divisor is new Loader.Procedure_With_3_Params
-     ("glVertexArrayBindingDivisor", UInt, Objects.Vertex_Arrays.Binding, UInt);
-
-   package Vertex_Array_Vertex_Buffer is new Loader.Procedure_With_5_Params
-     ("glVertexArrayVertexBuffer", UInt, Objects.Vertex_Arrays.Binding,
-      UInt, Low_Level.IntPtr, Size);
-
-   package Vertex_Array_Element_Buffer is new Loader.Procedure_With_2_Params
-     ("glVertexArrayElementBuffer", UInt, UInt);
-
-   package Enable_Vertex_Array_Attrib is new Loader.Procedure_With_2_Params
-     ("glEnableVertexArrayAttrib", UInt, Attribute);
-
-   package Disable_Vertex_Array_Attrib is new Loader.Procedure_With_2_Params
-     ("glDisableVertexArrayAttrib", UInt, Attribute);
-
    -----------------------------------------------------------------------------
    --                    Framebuffer objects and handling                     --
    -----------------------------------------------------------------------------
@@ -669,9 +631,6 @@ private package GL.API is
    package Get_Shader_Param is new Loader.Getter_With_3_Params
      ("glGetShaderiv", UInt, Enums.Shader_Param, Int);
 
-   package Get_Shader_Type is new Loader.Getter_With_3_Params
-     ("glGetShaderiv", UInt, Enums.Shader_Param, Objects.Shaders.Shader_Type);
-
    package Create_Shader is new Loader.Function_With_1_Param
      ("glCreateShader", Objects.Shaders.Shader_Type, UInt);
 
@@ -758,10 +717,6 @@ private package GL.API is
 
    package Get_Program_Resource_Location is new Loader.Function_With_3_Params
      ("glGetProgramResourceLocation", UInt, Enums.Program_Interface,
-      C.char_array, Int);
-
-   package Get_Program_Resource_Location_Index is new Loader.Function_With_3_Params
-     ("glGetProgramResourceLocationIndex", UInt, Enums.Program_Interface,
       C.char_array, Int);
 
    -----------------------------------------------------------------------------

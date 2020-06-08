@@ -15,7 +15,6 @@
 --  limitations under the License.
 
 with Orka.Rendering.Buffers.Mapped.Unsynchronized;
-with Orka.Rendering.Vertex_Formats;
 
 package Orka.Rendering.Buffers.MDI is
    pragma Preelaborate;
@@ -24,13 +23,7 @@ package Orka.Rendering.Buffers.MDI is
 
    type Batch is tagged record
       --  Attributes
-      Positions : UB.Unsynchronized_Mapped_Buffer
-        (Kind => Types.Half_Type,
-         Mode => Mapped.Write);
-      Normals   : UB.Unsynchronized_Mapped_Buffer
-        (Kind => Types.Half_Type,
-         Mode => Mapped.Write);
-      UVs       : UB.Unsynchronized_Mapped_Buffer
+      Data : UB.Unsynchronized_Mapped_Buffer
         (Kind => Types.Half_Type,
          Mode => Mapped.Write);
 
@@ -54,14 +47,8 @@ package Orka.Rendering.Buffers.MDI is
       UVs       : not null Indirect.Half_Array_Access;
       Indices   : not null Indirect.UInt_Array_Access);
 
-   function Create_Batch
-     (Parts, Vertices, Indices : Positive;
-      Format  : Rendering.Vertex_Formats.Vertex_Format) return Batch;
+   function Create_Batch (Parts, Vertices, Indices : Positive) return Batch;
 
    procedure Finish_Batch (Object : in out Batch);
-
-   procedure Bind_Buffers_To
-     (Object : in out Batch;
-      Format : in out Vertex_Formats.Vertex_Format);
 
 end Orka.Rendering.Buffers.MDI;
